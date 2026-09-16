@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reengajamento Inteligente · Petronect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="brand-mark">
+    <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
+      <circle cx="17" cy="17" r="17" fill="#0B2A4A"/>
+      <path d="M9 20c3.5-6 7-9 11-9 2 0 3.6 1 4.6 2.4" stroke="#4CAF6D" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+      <circle cx="24.6" cy="12.4" r="2" fill="#E8B84C"/>
+    </svg>
+    <span class="word">Petronect</span>
+  </div>
+  <nav class="menu">
+    <a href="../home/index.html">Home</a>
+    <a href="#">Oportunidades</a>
+    <a href="#">Propostas</a>
+    <a href="../minha-area/index.html">Minha Área</a>
+    <a href="#" class="ativo">Reengajamento</a>
+  </nav>
+  <div class="user-chip">Empresa Beta</div>
+</header>
+
+<main class="page">
+
+  <!-- CABEÇALHO -->
+  <section class="hero-reengajamento">
+    <span class="tag-hero">Estratégia & Conversão</span>
+    <h1>Reengajamento Inteligente</h1>
+    <p>A ação certa para cada comportamento.</p>
+    <span class="subtitulo-hero">Framework Operacional · Ciclo de Ativação do Usuário</span>
+  </section>
+
+  <!-- ETAPAS -->
+  <section class="etapas">
+    <div class="etapa">
+      <span class="etapa-num">Etapa 01</span>
+      <h3>Identificar</h3>
+    </div>
+    <div class="seta">→</div>
+    <div class="etapa">
+      <span class="etapa-num">Etapa 02</span>
+      <h3>Entender</h3>
+    </div>
+    <div class="seta">→</div>
+    <div class="etapa">
+      <span class="etapa-num">Etapa 03</span>
+      <h3>Agir</h3>
+    </div>
+  </section>
+
+  <!-- CENÁRIOS -->
+  <section class="cenarios">
+    <div class="cenario-card cenario-1">
+      <span class="cenario-tag">Cenário 01</span>
+      <p class="cenario-label">Comportamento</p>
+      <h3>Inativo</h3>
+      <p class="cenario-acao-label">Ação recomendada</p>
+      <p class="cenario-acao">Comunicação de retorno</p>
+      <button class="btn-acao" onclick="executarAcao('Comunicação de retorno', 'Inativo')">Executar ação</button>
+    </div>
+
+    <div class="cenario-card cenario-2">
+      <span class="cenario-tag">Cenário 02</span>
+      <p class="cenario-label">Comportamento</p>
+      <h3>Proposta abandonada</h3>
+      <p class="cenario-acao-label">Ação recomendada</p>
+      <p class="cenario-acao">Incentivar retomada</p>
+      <button class="btn-acao" onclick="executarAcao('Incentivar retomada', 'Proposta abandonada')">Executar ação</button>
+    </div>
+
+    <div class="cenario-card cenario-3">
+      <span class="cenario-tag">Cenário 03</span>
+      <p class="cenario-label">Comportamento</p>
+      <h3>Interesse divergente</h3>
+      <p class="cenario-acao-label">Ação recomendada</p>
+      <p class="cenario-acao">Atualizar recomendações</p>
+      <button class="btn-acao" onclick="executarAcao('Atualizar recomendações', 'Interesse divergente')">Executar ação</button>
+    </div>
+
+    <div class="cenario-card cenario-4">
+      <span class="cenario-tag">Cenário 04</span>
+      <p class="cenario-label">Comportamento</p>
+      <h3>Alta frequência</h3>
+      <p class="cenario-acao-label">Ação recomendada</p>
+      <p class="cenario-acao">Enviar novas oportunidades</p>
+      <button class="btn-acao" onclick="executarAcao('Enviar novas oportunidades', 'Alta frequência')">Executar ação</button>
+    </div>
+  </section>
+
+  <!-- CASO PRÁTICO -->
+  <section class="caso-pratico">
+    <h2>Caso prático — Empresa Delta</h2>
+    <div class="caso-grid">
+      <div class="caso-info">
+        <p><strong>Segmento:</strong> Engenharia</p>
+        <p><strong>Estado:</strong> BA</p>
+        <p><strong>Interesse declarado:</strong> Licitações</p>
+        <p><strong>Interesse identificado:</strong> Oportunidades</p>
+        <p><strong>Dias sem acesso:</strong> 21</p>
+        <p><strong>Score:</strong> 0</p>
+        <p><strong>Status:</strong> <span class="status-inativo">Inativo</span></p>
+      </div>
+      <div class="caso-diag">
+        <p class="diag-label">Diagnóstico automatizado</p>
+        <p class="diag-texto">Fornecedor está há <strong>21 dias sem acessar</strong> o portal.</p>
+        <p class="diag-label">Ação recomendada</p>
+        <p class="diag-texto">Enviar comunicação de retorno com oportunidades compatíveis com o perfil.</p>
+        <button class="btn-primary" onclick="executarAcao('Comunicação de retorno', 'Empresa Delta')">Enviar comunicação</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+    <p>Petronect · Inteligência de Comportamento e Reengajamento</p>
+  </footer>
+
+</main>
+
+<script>
+function executarAcao(acao, contexto) {
+  // Cria notificação elegante
+  const antiga = document.querySelector('.notificacao');
+  if (antiga) antiga.remove();
+
+  const notif = document.createElement('div');
+  notif.className = 'notificacao';
+  notif.innerHTML = `
+    <div class="notif-icone">✅</div>
+    <div class="notif-conteudo">
+      <strong>Ação executada: ${acao}</strong>
+      <p>Contexto: <strong>${contexto}</strong><br><small>O sistema registrou a ação no Dashboard da Petronect.</small></p>
+    </div>
+    <button class="notif-fechar" onclick="this.parentElement.remove()">×</button>
+  `;
+  document.body.appendChild(notif);
+  setTimeout(() => notif.classList.add('visivel'), 10);
+  setTimeout(() => {
+    notif.classList.remove('visivel');
+    setTimeout(() => notif.remove(), 300);
+  }, 4000);
+}
+</script>
+</body>
+</html>
