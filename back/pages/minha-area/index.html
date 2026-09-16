@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Área de Interesse · Petronect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOPO / NAVEGAÇÃO -->
+<header class="topbar">
+  <div class="brand-mark">
+    <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
+      <circle cx="17" cy="17" r="17" fill="#0B2A4A"/>
+      <path d="M9 20c3.5-6 7-9 11-9 2 0 3.6 1 4.6 2.4" stroke="#4CAF6D" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+      <circle cx="24.6" cy="12.4" r="2" fill="#E8B84C"/>
+    </svg>
+    <span class="word">Petronect</span>
+  </div>
+  <nav class="menu">
+    <a href="#">Home</a>
+    <a href="#">Oportunidades</a>
+    <a href="#">Propostas</a>
+    <a href="#" class="ativo">Minha Área</a>
+  </nav>
+  <div class="user-chip">Empresa Beta</div>
+</header>
+
+<main class="page">
+
+  <!-- SAUDAÇÃO -->
+  <section class="saudacao">
+    <h1>Olá, Empresa Beta 👋</h1>
+    <p>Aqui estão as oportunidades e alertas baseados no seu comportamento no Portal.</p>
+  </section>
+
+  <!-- ALERTA DE PROPOSTA ABANDONADA -->
+  <section class="alerta-abandono">
+    <div class="alerta-icone">⚠️</div>
+    <div class="alerta-texto">
+      <h3>Você tem uma proposta pendente</h3>
+      <p>Você iniciou uma proposta de <strong>Manutenção Industrial</strong> e parou na etapa de documentação.</p>
+    </div>
+    <button class="btn btn-primary" onclick="retomarProposta()">Continuar proposta</button>
+  </section>
+
+  <!-- OPORTUNIDADES RECOMENDADAS -->
+  <section class="secao">
+    <h2>Oportunidades Recomendadas para você</h2>
+    <p class="subtitulo">Baseado nas suas buscas por <strong>FPSO</strong>, <strong>Equipamentos</strong> e <strong>Offshore</strong></p>
+
+    <div class="grid-cards">
+      <div class="card" onclick="registrarClique('Serviços Offshore')">
+        <span class="tag">Recomendado</span>
+        <h3>Contratação de Serviços Offshore</h3>
+        <p>Publicado há 2 dias · Prazo: 30/09</p>
+        <button class="btn btn-primary">Ver detalhes</button>
+      </div>
+
+      <div class="card" onclick="registrarClique('Equipamentos Submarinos')">
+        <span class="tag">Recomendado</span>
+        <h3>Fornecimento de Equipamentos Submarinos</h3>
+        <p>Publicado há 5 dias · Prazo: 05/10</p>
+        <button class="btn btn-primary">Ver detalhes</button>
+      </div>
+
+      <div class="card" onclick="registrarClique('Manutenção Industrial')">
+        <span class="tag">Recomendado</span>
+        <h3>Manutenção Industrial em Plataformas</h3>
+        <p>Publicado há 1 dia · Prazo: 28/09</p>
+        <button class="btn btn-primary">Ver detalhes</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALERTAS -->
+  <section class="secao">
+    <h2>Alertas de novas oportunidades</h2>
+    <ul class="lista-alertas">
+      <li>🔔 Nova licitação de <strong>Engenharia Naval</strong> publicada hoje</li>
+      <li>🔔 Novo edital de <strong>Serviços de TI</strong> compatível com seu perfil</li>
+      <li>🔔 Treinamento sobre <strong>Cadastro Petrobras</strong> disponível</li>
+    </ul>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+    <p>Petronect · Inteligência de Comportamento e Reengajamento</p>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

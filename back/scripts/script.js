@@ -1,4 +1,3 @@
-
 const tabLogin = document.getElementById('tabLogin');
 const tabSignup = document.getElementById('tabSignup');
 const viewLogin = document.getElementById('viewLogin');
@@ -16,8 +15,10 @@ tabLogin.addEventListener('click', showLogin);
 tabSignup.addEventListener('click', showSignup);
 document.getElementById('goSignup').addEventListener('click', (e)=>{e.preventDefault(); showSignup();});
 document.getElementById('goLogin').addEventListener('click', (e)=>{e.preventDefault(); showLogin();});
+
+// BOTÃO "ENTRAR NO PORTAL" → redireciona para a Home
 document.getElementById('loginSubmit').addEventListener('click', ()=>{
-  alert('Protótipo — em produção isso autenticaria o fornecedor e registraria o evento de acesso na jornada.');
+  window.location.href = '../pages/home/index.html';
 });
 
 
@@ -84,11 +85,13 @@ function renderStep(){
   btnBack.disabled = current === 1;
   btnNext.textContent = current === totalSteps ? 'Concluir cadastro' : 'Salvar e continuar';
 }
+
+// BOTÃO "CONCLUIR CADASTRO" (última etapa) → redireciona para a Home
 btnNext.addEventListener('click', ()=>{
   if(current < totalSteps){
     current++; renderStep();
   } else {
-    alert('Protótipo — em produção isso criaria o perfil declarado do fornecedor (Pilar 1) e liberaria o acesso ao portal.');
+    window.location.href = '../pages/home/index.html';
   }
 });
 btnBack.addEventListener('click', ()=>{
