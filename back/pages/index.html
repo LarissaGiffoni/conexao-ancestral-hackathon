@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Petronect · Acesso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  
+  <div class="brand-header">
+    <div class="brand-mark">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="17" fill="#0B2A4A"/>
+        <path d="M9 20c3.5-6 7-9 11-9 2 0 3.6 1 4.6 2.4" stroke="#4CAF6D" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+        <circle cx="24.6" cy="12.4" r="2" fill="#E8B84C"/>
+      </svg>
+      <span class="word">Petronect</span>
+    </div>
+    <p class="brand-tagline">Conectando fornecedores a <strong>novas oportunidades</strong>.</p>
+  </div>
+
+  <div class="card">
+
+    <div class="switcher">
+      <button id="tabLogin" class="active">Entrar</button>
+      <button id="tabSignup">Criar cadastro</button>
+    </div>
+
+  
+    <section id="viewLogin">
+      <h2 class="view-title">Acessar o portal</h2>
+      <p class="view-sub">Entre com os dados da sua empresa fornecedora para ver oportunidades recomendadas para você.</p>
+
+      <div class="field">
+        <label for="loginEmail">E-mail corporativo</label>
+        <input type="email" id="loginEmail" placeholder="nome@empresa.com.br">
+      </div>
+      <div class="field">
+        <label for="loginPass">Senha</label>
+        <input type="password" id="loginPass" placeholder="••••••••">
+      </div>
+      <div style="text-align:right; margin:-8px 0 20px;">
+        <a href="#" style="font-size:12.3px; color:var(--navy-btn); font-weight:600; text-decoration:none;">Esqueci minha senha</a>
+      </div>
+
+      <button class="btn btn-primary" id="loginSubmit">Entrar no portal</button>
+
+      <div class="form-foot">
+        <span>Ainda não é cadastrado?</span>
+        <a href="#" id="goSignup">Criar cadastro de fornecedor</a>
+      </div>
+    </section>
+
+
+    <section id="viewSignup" style="display:none;">
+
+      <div class="greet-row">
+        <div class="avatar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#0B3D66" stroke-width="1.8"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" stroke="#0B3D66" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>Bem-vindo(a)!</h3>
+          <p>Antes de começar, confirme os dados da sua empresa.</p>
+        </div>
+      </div>
+
+      <div class="tracker" id="tracker">
+        <div class="step current" data-step="1"><span class="bead">1</span><span class="label">Empresa</span></div>
+        <div class="connector"></div>
+        <div class="step" data-step="2"><span class="bead">2</span><span class="label">Fornec.</span></div>
+        <div class="connector"></div>
+        <div class="step" data-step="3"><span class="bead">3</span><span class="label">Interesses</span></div>
+        <div class="connector"></div>
+        <div class="step" data-step="4"><span class="bead">4</span><span class="label">Acesso</span></div>
+      </div>
+
+      <form id="signupForm">
+
+        <!-- STEP 1 — DADOS DA EMPRESA -->
+        <div class="step-panel active" data-panel="1">
+          <p class="section-label">Dados da empresa</p>
+
+          <div class="field">
+            <label for="nomeEmpresa">Nome da empresa</label>
+            <input type="text" id="nomeEmpresa" placeholder="Ex.: Tech Soluções Ltda">
+          </div>
+
+          <div class="field">
+            <label for="segmento">Segmento de atuação</label>
+            <select id="segmento">
+              <option value="">Selecione</option>
+              <option>Tecnologia da Informação</option>
+              <option>Equipamentos e materiais</option>
+              <option>Serviços de engenharia</option>
+              <option>Perfuração e completação</option>
+              <option>EPC (engenharia, suprimento e construção)</option>
+              <option>Logística e transporte</option>
+              <option>Manutenção industrial</option>
+              <option>Segurança e meio ambiente</option>
+              <option>Consultoria técnica</option>
+              <option>Outro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="estado">Estado de atuação</label>
+            <select id="estado">
+              <option value="">Selecione</option>
+              <option>Acre</option><option>Alagoas</option><option>Amapá</option><option>Amazonas</option>
+              <option>Bahia</option><option>Ceará</option><option selected>Distrito Federal</option><option>Espírito Santo</option>
+              <option>Goiás</option><option>Maranhão</option><option>Mato Grosso</option><option>Mato Grosso do Sul</option>
+              <option>Minas Gerais</option><option>Pará</option><option>Paraíba</option><option>Paraná</option>
+              <option>Pernambuco</option><option>Piauí</option><option>Rio de Janeiro</option><option>Rio Grande do Norte</option>
+              <option>Rio Grande do Sul</option><option>Rondônia</option><option>Roraima</option><option>Santa Catarina</option>
+              <option>São Paulo</option><option>Sergipe</option><option>Tocantins</option>
+              <option>Atuação nacional</option>
+            </select>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="cnpj">CNPJ</label>
+              <input type="text" id="cnpj" placeholder="00.000.000/0000-00">
+            </div>
+            <div class="field">
+              <label for="porte">Porte da empresa</label>
+              <select id="porte">
+                <option value="">Selecione</option>
+                <option>Microempresa (ME)</option>
+                <option>Pequeno porte (EPP)</option>
+                <option>Médio porte</option>
+                <option>Grande porte</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 — CATEGORIAS DE FORNECIMENTO -->
+        <div class="step-panel" data-panel="2">
+          <p class="section-label">Categorias de fornecimento</p>
+          <p class="view-sub" style="margin-bottom:16px;">Toque para selecionar. Use o "+" para adicionar uma categoria que não está na lista.</p>
+          <div class="pill-row" id="fornecimentoPills">
+            <button type="button" class="pill">Software</button>
+            <button type="button" class="pill">Serviços de TI</button>
+            <button type="button" class="pill">Consultoria</button>
+            <button type="button" class="pill">Equipamentos submarinos</button>
+            <button type="button" class="pill">Válvulas e conexões</button>
+            <button type="button" class="pill">Serviços offshore</button>
+            <button type="button" class="pill">EPI e segurança</button>
+            <button type="button" class="pill">Logística e transporte</button>
+            <button type="button" class="pill">Manutenção e inspeção</button>
+            <button type="button" class="pill">Materiais e insumos</button>
+            <button type="button" class="pill-add" id="addFornecimento">+</button>
+          </div>
+          <div class="pill-input" id="fornecimentoInputWrap">
+            <input type="text" id="fornecimentoInput" placeholder="Nome da categoria">
+            <button type="button" id="fornecimentoAddBtn">Adicionar</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 — CATEGORIAS DE OPORTUNIDADE + INTERESSES -->
+        <div class="step-panel" data-panel="3">
+          <p class="section-label">Categorias de oportunidades de interesse</p>
+          <div class="pill-row" id="oportunidadePills" style="margin-bottom:24px;">
+            <button type="button" class="pill">FPSO</button>
+            <button type="button" class="pill">Poços e perfuração</button>
+            <button type="button" class="pill">Óleo e gás — onshore</button>
+            <button type="button" class="pill">Óleo e gás — offshore</button>
+            <button type="button" class="pill">Refino</button>
+            <button type="button" class="pill">Logística e transporte</button>
+            <button type="button" class="pill-add" id="addOportunidade">+</button>
+          </div>
+          <div class="pill-input" id="oportunidadeInputWrap">
+            <input type="text" id="oportunidadeInput" placeholder="Nome da categoria">
+            <button type="button" id="oportunidadeAddBtn">Adicionar</button>
+          </div>
+
+          <p class="section-label">Interesses</p>
+          <div class="check-row" id="interessesRow">
+            <label class="check-item checked"><input type="checkbox" checked value="Licitações"><span class="check-box"></span>Licitações</label>
+            <label class="check-item checked"><input type="checkbox" checked value="Leilões"><span class="check-box"></span>Leilões</label>
+            <label class="check-item"><input type="checkbox" value="Treinamentos"><span class="check-box"></span>Treinamentos</label>
+            <label class="check-item"><input type="checkbox" value="Cadastro Petrobras"><span class="check-box"></span>Cadastro Petrobras</label>
+            <label class="check-item checked"><input type="checkbox" checked value="Oportunidades"><span class="check-box"></span>Oportunidades</label>
+            <label class="check-item"><input type="checkbox" value="Novidades do portal"><span class="check-box"></span>Novidades do portal</label>
+          </div>
+
+          <div class="field" style="margin-top:22px;">
+            <label for="canalAviso">Canal preferido para avisos</label>
+            <select id="canalAviso">
+              <option value="">Selecione</option>
+              <option>E-mail</option>
+              <option>Notificação no portal</option>
+              <option>E-mail e portal</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- STEP 4 — CONTA DE ACESSO -->
+        <div class="step-panel" data-panel="4">
+          <p class="section-label">Conta de acesso</p>
+          <div class="row2">
+            <div class="field">
+              <label for="respNome">Nome do responsável</label>
+              <input type="text" id="respNome" placeholder="Nome completo">
+            </div>
+            <div class="field">
+              <label for="respCargo">Cargo</label>
+              <input type="text" id="respCargo" placeholder="Ex.: Compras, Diretoria">
+            </div>
+          </div>
+          <div class="field">
+            <label for="respEmail">E-mail corporativo</label>
+            <input type="email" id="respEmail" placeholder="nome@empresa.com.br">
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" placeholder="Mínimo 8 caracteres">
+            </div>
+            <div class="field">
+              <label for="senha2">Confirmar senha</label>
+              <input type="password" id="senha2" placeholder="Repita a senha">
+            </div>
+          </div>
+          <div class="lgpd-note">
+            <span>🔒</span>
+            <span>Seus dados de acesso e navegação no portal são usados apenas para recomendar oportunidades e priorizar atendimento — conforme a LGPD.</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="btnBack" disabled>Voltar</button>
+          <button type="button" class="btn btn-primary" id="btnNext" style="width:auto; flex:1;">Salvar e continuar</button>
+        </div>
+      </form>
+
+      <div class="form-foot">
+        <span>Já tem cadastro?</span>
+        <a href="#" id="goLogin">Entrar</a>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="../scripts/script.js"></script>
+</body>
+</html>
