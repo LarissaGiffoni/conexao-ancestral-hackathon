@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petronect - Portal de Compras da Petrobras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: #1a3d7a;
+            color: white;
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-icons a {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .flag {
+            width: 24px;
+            height: 16px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .flag:hover {
+            transform: scale(1.1);
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a3d7a;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #7ac943;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #7ac943;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #5a9a2f;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-btn,
+        .login-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            color: #1a3d7a;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .search-btn:hover,
+        .login-btn:hover {
+            color: #7ac943;
+        }
+
+        /* HERO BANNER */
+        .hero {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1a3d7a 100%);
+            padding: 40px;
+            margin: 30px 40px;
+            border-radius: 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 13px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-green {
+            background: linear-gradient(135deg, #7ac943, #5a9a2f);
+            color: white;
+        }
+
+        .btn-green:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(122, 201, 67, 0.4);
+        }
+
+        .btn-purple {
+            background: linear-gradient(135deg, #9b8cc9, #7a6b9d);
+            color: white;
+        }
+
+        .btn-purple:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(155, 140, 201, 0.4);
+        }
+
+        /* CAROUSEL BANNER */
+        .carousel {
+            margin: 40px;
+            background: linear-gradient(135deg, #1a3d7a 0%, #2c5aa0 50%, #7ac943 100%);
+            padding: 60px 50px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            min-height: 350px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        .carousel-slide {
+            display: none;
+            flex: 1;
+            color: white;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .carousel-slide.active {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .carousel-text h2 {
+            font-size: 56px;
+            color: #7ac943;
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-text p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .carousel-btn {
+            background: linear-gradient(135deg, #7ac943, #5a9a2f);
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(122, 201, 67, 0.3);
+        }
+
+        .carousel-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(122, 201, 67, 0.5);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            right: 50px;
+            bottom: 30px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .carousel-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+            background: rgba(0, 0, 0, 0.25);
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(0, 0, 0, 0.45);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.left {
+            left: 25px;
+        }
+
+        .carousel-arrow.right {
+            right: 25px;
+        }
+
+        /* SIDEBAR */
+        .left-sidebar {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        .sidebar-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a3d7a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .sidebar-icon:hover {
+            background: #7ac943;
+            transform: scale(1.1);
+        }
+
+        /* CARDS SECTION */
+        .cards-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f7ff 100%);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 45px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(122, 201, 67, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 50px rgba(122, 201, 67, 0.25);
+            transform: translateY(-15px) scale(1.02);
+            border-color: #7ac943;
+            background: linear-gradient(135deg, #ffffff 0%, #f0fffb 100%);
+        }
+
+        .card-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1a3d7a 50%, #7ac943 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 25px rgba(122, 201, 67, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.2) rotateY(360deg) translateY(-10px);
+            box-shadow: 0 15px 40px rgba(122, 201, 67, 0.5);
+            background: linear-gradient(135deg, #7ac943 0%, #5a9a2f 100%);
+        }
+
+        .card h3 {
+            color: #1a3d7a;
+            font-size: 17px;
+            margin-bottom: 18px;
+            font-weight: 800;
+            line-height: 1.4;
+            transition: color 0.3s;
+        }
+
+        .card:hover h3 {
+            color: #7ac943;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+            transition: color 0.3s;
+        }
+
+        .card:hover p {
+            color: #333;
+        }
+
+        /* MINHA PETRONECT SECTION */
+        .minha-petronect {
+            background: linear-gradient(135deg, #1a3d7a 0%, #2c5aa0 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .minha-petronect::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(122, 201, 67, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            will-change: transform;
+            z-index: 1;
+        }
+
+        .minha-petronect::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(122, 201, 67, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            will-change: transform;
+            z-index: 1;
+        }
+
+        /* PARALLAX SHAPES */
+        .parallax-shape {
+            position: absolute;
+            opacity: 0.15;
+            will-change: transform;
+        }
+
+        .parallax-shape.circle-1 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255, 215, 100, 0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 10%;
+            left: 10%;
+            z-index: 2;
+        }
+
+        .parallax-shape.circle-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 215, 100, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 15%;
+            right: 5%;
+            z-index: 2;
+        }
+
+        .parallax-shape.dots {
+            width: 300px;
+            height: 300px;
+            top: 5%;
+            left: 5%;
+            z-index: 2;
+        }
+
+        .parallax-shape.dots svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .parallax-shape.line {
+            width: 4px;
+            height: 400px;
+            background: linear-gradient(to bottom, rgba(122, 201, 67, 0.5), transparent);
+            top: 0;
+            left: 50px;
+            z-index: 2;
+        }
+
+        .parallax-shape.plus {
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 10%;
+            color: rgba(122, 201, 67, 0.3);
+            font-size: 80px;
+            z-index: 2;
+        }
+
+        .parallax-shape.wavy {
+            top: 15%;
+            right: 3%;
+            font-size: 50px;
+            z-index: 2;
+        }
+
+        /* HERO PARALLAX */
+        .hero {
+            background: linear-gradient(135deg, #1a3d7a 0%, #2c5aa0 50%, #1a3d7a 100%);
+            padding: 60px 50px;
+            margin: 40px;
+            border-radius: 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            min-height: 250px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(122, 201, 67, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.05;
+            will-change: transform;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .petronect-logo {
+            font-size: 14px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .petronect-logo-box {
+            display: inline-block;
+            border: 2px solid #7ac943;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .petronect-logo-box .minha {
+            color: #7ac943;
+            font-weight: bold;
+        }
+
+        .petronect-logo-box .petronect {
+            color: white;
+            font-weight: bold;
+        }
+
+        .minha-petronect h2 {
+            font-size: 32px;
+            margin: 20px 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .minha-petronect p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .minha-petronect .btn-green {
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .geometric-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #1a3d7a 0%, #2c5aa0 100%);
+            padding: 50px 40px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(122, 201, 67, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            opacity: 0.95;
+            transition: opacity 0.3s;
+        }
+
+        footer p:hover {
+            opacity: 1;
+        }
+
+        .footer-logo {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #7ac943;
+            font-weight: 900;
+        }
+
+        .footer-info {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .cards-grid {
+                gap: 30px;
+            }
+
+            .card {
+                padding: 35px 25px;
+            }
+
+            .cards-section {
+                padding: 60px 30px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 25px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .carousel {
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px;
+            }
+
+            .carousel-text h2 {
+                font-size: 36px;
+            }
+
+            .card-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .card h3 {
+                font-size: 15px;
+            }
+
+            .card p {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 20px;
+            }
+
+            header {
+                flex-direction: column;
+                padding: 12px 15px;
+                gap: 10px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 10px;
+                order: 3;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 11px;
+                padding: 5px 8px;
+            }
+
+            .header-right {
+                gap: 10px;
+                order: 2;
+            }
+
+            .search-btn,
+            .login-btn {
+                font-size: 11px;
+                padding: 8px 12px;
+            }
+
+            .hero {
+                flex-direction: column;
+                margin: 15px;
+                padding: 25px;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 12px;
+                width: 100%;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+
+            .top-bar-left,
+            .top-bar-right {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .social-icons {
+                gap: 10px;
+            }
+
+            .left-sidebar {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                margin: 15px;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .sidebar-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .carousel {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .carousel-text h2 {
+                font-size: 28px;
+            }
+
+            .carousel-text p {
+                font-size: 14px;
+            }
+
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .card {
+                padding: 25px 15px;
+            }
+
+            .card-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+                margin-bottom: 15px;
+            }
+
+            .card h3 {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
+            .card p {
+                font-size: 12px;
+            }
+
+            .cards-section {
+                padding: 40px 15px;
+            }
+
+            .minha-petronect {
+                padding: 40px 20px;
+                min-height: auto;
+            }
+
+            .minha-petronect h2 {
+                font-size: 22px;
+                margin: 15px 0;
+            }
+
+            .minha-petronect p {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .petronect-logo-box {
+                margin-bottom: 15px;
+            }
+
+            footer {
+                padding: 15px;
+                font-size: 11px;
+            }
+
+            .footer-logo {
+                font-size: 14px;
+            }
+
+            .left-sidebar {
+                left: auto;
+                right: 15px;
+                top: auto;
+                bottom: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            header {
+                padding: 10px;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            nav a {
+                font-size: 10px;
+                padding: 4px 6px;
+            }
+
+            .hero {
+                margin: 10px;
+                padding: 20px 15px;
+            }
+
+            .hero h1 {
+                font-size: 18px;
+            }
+
+            .top-bar {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
+
+            .card {
+                padding: 20px 12px;
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+
+            .card h3 {
+                font-size: 13px;
+            }
+
+            .card p {
+                font-size: 11px;
+            }
+
+            .carousel {
+                padding: 15px;
+            }
+
+            .carousel-text h2 {
+                font-size: 24px;
+            }
+
+            .carousel-text p {
+                font-size: 12px;
+            }
+
+            .carousel-arrow {
+                display: none;
+            }
+
+            .cards-section {
+                padding: 30px 10px;
+            }
+
+            .minha-petronect {
+                padding: 30px 15px;
+            }
+
+            .minha-petronect h2 {
+                font-size: 18px;
+            }
+
+            .minha-petronect p {
+                font-size: 13px;
+            }
+
+            .left-sidebar {
+                right: 10px;
+                bottom: 80px;
+                gap: 10px;
+            }
+
+            .sidebar-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+            }
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            z-index: 100;
+            text-decoration: none;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>Somos o Portal de Compras da Petrobras desde 2003</span>
+            <a href="#">Atendimento Pessoas Surda</a>
+        </div>
+        <div class="top-bar-right">
+            <div class="social-icons">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="language-selector">
+                <span style="color: #7ac943;"><i class="fas fa-globe"></i> 🇺🇸 |</span>
+                <span>🇪🇸 |</span>
+                <span>🇨🇳</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="#" class="logo">Petronect</a>
+        <nav>
+            <a href="#">À Petronect</a>
+            <a href="#">Cadastro na Petrobras</a>
+            <a href="#">Compras e Contratações</a>
+            <a href="#">Minha Petronect</a>
+            <a href="#">Assinatura Eletrônica</a>
+            <a href="#">Imprensa</a>
+            <a href="#">Ajuda</a>
+        </nav>
+        <div class="header-right">
+            <button class="search-btn"><i class="fas fa-search"></i> PESQUISAR</button>
+            <button class="login-btn"><i class="fas fa-lock"></i> LOGIN</button>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <div class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <h1>Portal de Compras da Petrobras</h1>
+            <p>Busque aqui uma oportunidade para realizar negócios com a Petrobras!</p>
+            <div class="hero-buttons">
+                <button class="btn btn-green">ABERTO PARA PROPOSTAS</button>
+                <button class="btn btn-purple">CONCLUÍDAS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="left-sidebar">
+        <div class="sidebar-icon" title="Aviões"><i class="fas fa-plane"></i></div>
+        <div class="sidebar-icon" title="Pessoas"><i class="fas fa-users"></i></div>
+        <div class="sidebar-icon" title="Globo"><i class="fas fa-globe"></i></div>
+    </div>
+
+    <!-- CAROUSEL BANNER -->
+    <div class="carousel">
+        <div class="carousel-slide active">
+            <div class="carousel-text">
+                <h2>300</h2>
+                <p><strong>OPORTUNIDADES</strong></p>
+                <p style="font-size: 13px; margin-top: 10px;">PÚBLICAS POR MÊS COM A TAXA DE ACESSO</p>
+            </div>
+            <div style="flex: 1; text-align: center; font-size: 80px;"><i class="fas fa-user-tie"
+                    style="color: white;"></i></div>
+        </div>
+
+        <div class="carousel-slide">
+            <div class="carousel-text">
+                <h2>100+</h2>
+                <p><strong>CATEGORIAS</strong></p>
+                <p style="font-size: 13px; margin-top: 10px;">DE PRODUTOS E SERVIÇOS</p>
+            </div>
+            <div style="flex: 1; text-align: center; font-size: 80px;"><i class="fas fa-box" style="color: white;"></i>
+            </div>
+        </div>
+
+        <button class="carousel-arrow left" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-arrow right" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="carousel-controls">
+            <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+            <div class="carousel-dot" onclick="goToSlide(1)"></div>
+        </div>
+    </div>
+
+    <!-- CARDS SECTION -->
+    <div class="cards-section">
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-user-circle"></i></div>
+                <h3>CADASTRE-SE NA PETROBRAS</h3>
+                <p>Faça seu cadastro e seja agora um fornecedor.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
+                <h3>CONSULTE AS FAMÍLIAS PETROBRAS</h3>
+                <p>Confira as Famílias Petrobras atualizadas para fornecedores Petrobras.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-search"></i></div>
+                <h3>BUSQUE SUA OPORTUNIDADE</h3>
+                <p>Visualize todas as licitações públicas pela Lei Nº 13.303/16.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <h3>OPORTUNIDADES EM DESTAQUE</h3>
+                <p>Confira a lista das oportunidades em destaque.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-info-circle"></i></div>
+                <h3>TAXA DE ACESSO</h3>
+                <p>Informações gerais e formas de pagamento.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-lock"></i></div>
+                <h3>CONHEÇA NOSSAS POLÍTICAS DE SEGURANÇA</h3>
+                <p>A conformidade é um valor para a Petronect e preserva a segurança das informações.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-play-circle"></i></div>
+                <h3>TREINAMENTOS</h3>
+                <p>Navegue pelos materiais de treinamento e tutoriais em vídeo gratuitos para facilitar seu aprendizado
+                    no Portal.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-gavel"></i></div>
+                <h3>SAIBA MAIS SOBRE LEILÕES</h3>
+                <p>Conheça os processos de leilões do Grupo Petrobras e nossos treinamentos disponíveis.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MINHA PETRONECT SECTION -->
+    <div class="minha-petronect" id="minhaSection">
+        <!-- Parallax Shapes -->
+        <div class="parallax-shape circle-1" id="shape1"></div>
+        <div class="parallax-shape circle-2" id="shape2"></div>
+        <div class="parallax-shape dots" id="shape3">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="40" cy="20" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="60" cy="20" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="80" cy="20" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="20" cy="40" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="40" cy="40" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="60" cy="40" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="80" cy="40" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="20" cy="60" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="40" cy="60" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="60" cy="60" r="3" fill="rgba(122, 201, 67, 0.8)" />
+                <circle cx="80" cy="60" r="3" fill="rgba(122, 201, 67, 0.8)" />
+            </svg>
+        </div>
+        <div class="parallax-shape line" id="shape4"></div>
+        <div class="parallax-shape plus" id="shape5">+</div>
+        <div class="parallax-shape wavy" id="shape6">~</div>
+
+        <div class="geometric-shapes" id="shapes"></div>
+        <div class="petronect-logo-box" style="position: relative; z-index: 10;">
+            <div style="display: flex; gap: 5px; align-items: center; justify-content: center;">
+                <span style="font-size: 20px;"><i class="fas fa-cube"></i></span>
+                <div>
+                    <div class="minha">MINHA</div>
+                    <div class="petronect">PETRONECT</div>
+                </div>
+            </div>
+        </div>
+        <h2 style="position: relative; z-index: 10;">Acesse agora a plataforma e aumente suas chances de sucesso como
+            fornecedor da Petrobras!</h2>
+        <p style="position: relative; z-index: 10;">Aproveite nossas ferramentas inteligentes e recursos avançados de
+            busca de oportunidades para potencializar seus negócios.</p>
+        <p style="position: relative; z-index: 10;"><strong>E o melhor: todos esses benefícios são gratuitos.</strong>
+        </p>
+        <button class="btn btn-green" style="position: relative; z-index: 10;">SAIBA MAIS</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p style="color: #999;">O Grupo Petrobras já poupou, até o momento, a emissão de 1.676,52 toneladas de CO2
+                por utilizar a Petronect.</p>
+            <div class="footer-logo">
+                Petronect
+            </div>
+            <div class="footer-info">
+                <p style="margin-top: 10px;"><strong>PESSOAS CONECTADAS</strong></p>
+                <p>CONSTROEM O AMANHÃ</p>
+            </div>
+            <div class="footer-info">
+                <p style="margin-top: 10px;"><strong>HACKATON - KODIE</strong></p>
+                <p>Fernanda Cristina <br>
+                Tayná Goes <br>
+                Larissa Moreira <br>
+                Mariana Cardoso <br>
+                Elvira Gomes <br></p>
+            </div>
+            <p style="margin-top: 20px; color: #999;">© 2024 Petronect - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/+552140401490" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        let currentSlide = 0;
+        let autoplayInterval;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            currentSlide += direction;
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+            });
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        startAutoplay();
+
+        const shapes = document.querySelectorAll('.parallax-shape');
+        shapes.forEach((shape, index) => {
+            const delay = index * 0.1;
+            shape.style.animation = `pulse 3s ease-in-out ${delay}s infinite`;
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% { opacity: 0.15; }
+                50% { opacity: 0.25; }
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(10px); }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInLeft {
+                from {
+                    opacity: 0;
+                    transform: translateX(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes fadeInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .card {
+                animation: fadeInUp 0.6s ease-out;
+            }
+
+            .card:nth-child(2) { animation-delay: 0.1s; }
+            .card:nth-child(3) { animation-delay: 0.2s; }
+            .card:nth-child(4) { animation-delay: 0.3s; }
+            .card:nth-child(5) { animation-delay: 0.4s; }
+            .card:nth-child(6) { animation-delay: 0.5s; }
+            .card:nth-child(7) { animation-delay: 0.6s; }
+            .card:nth-child(8) { animation-delay: 0.7s; }
+
+        `;
+        document.head.appendChild(style);
+
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.parallax-shape');
+            const x = (e.clientX / window.innerWidth) * 50;
+            const y = (e.clientY / window.innerHeight) * 50;
+
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const section = document.getElementById('minhaSection');
+            const scrollPosition = window.scrollY;
+            const elementPosition = section.offsetTop;
+            const distance = scrollPosition - elementPosition;
+
+            if (distance > -window.innerHeight && distance < section.offsetHeight) {
+                const parallaxStrength = distance * 0.5;
+                const shapes = document.querySelectorAll('.parallax-shape');
+
+                shapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 0.3;
+                    shape.style.transform = `translateY(${parallaxStrength * speed}px)`;
+                });
+            }
+        });
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.boxShadow = '0 12px 24px rgba(122, 201, 67, 0.2)';
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+            });
+        });
+
+        document.querySelectorAll('.card-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            icon.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        document.querySelectorAll('.card-icon').forEach(icon => {
+            icon.style.transition = 'all 0.3s ease';
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
